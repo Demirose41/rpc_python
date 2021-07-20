@@ -33,3 +33,7 @@ while score 1 or score 2 < score limit
     print p2 wins 
     p2score ++
 
+
+Rematch system ###############
+
+look up cases and 

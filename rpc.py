@@ -93,11 +93,30 @@ def divider () :
         print("####################################\n")
         print("# # # # # # # # # # # # # # # # # #\n")
 
+def hud () :
+    print(f"SCORE \n {score_p1} - {score_p2}")
+    print(f"Round {round}")
+
+def prompt(x) :
+    print("####################################\n") 
+    print(f"{x}! WHAT IS YOUR CHOICE")
+    print("\n####################################\n\n")
+    return input()
+
+def reset() :
+    global score_p1 
+    global score_p2 
+    global round   
+    score_p1 = 0
+    score_p2 = 0
+    round    = 0
+
 
 
 score_p1 = 0
 score_p2 = 0
 round = 0 
+volition = True
 live_score = {score_p1,score_p2}
 
 
@@ -105,43 +124,44 @@ print("who will be first")
 p1_name = input()
 print("who will be second")
 p2_name = input()
-print("how many rounds?")
-win_condition = math.ceil( int(input()) / 2 )
-print(f"{win_condition} win con")
-while score_p2 < win_condition  or score_p1 < win_condition:
-    print(f"SCORE \n {score_p1} - {score_p2}")
-    print(f"Round {round}")
-    print("####################################\n") 
-    print(f"{p1_name}! WHAT IS YOUR CHOICE")
-    print("\n####################################\n\n")
-    p1_input = input()
-    divider()
-    print("####################################\n")
-    print(f"{p2_name}! WHAT IS YOUR CHOICE")
-    print("\n####################################\n\n")
-    p2_input = input()
-
-    outcome = compare(p1_input,p2_input)
-
-    if outcome == "p1" :
-        score_p1 += 1 
-        round += 1
-        print(f"{p1_name} is the winner of this round")
+win_condition = math.ceil( int(input("Best of :")) / 2 )
+while volition == True :
+    while score_p2 < win_condition  and score_p1 < win_condition :
+        hud()
+        p1_input = prompt(p1_name)
         divider()
-    elif outcome == "p2" :
-            score_p2 += 1
+        p2_input = prompt(p2_name)
+
+        outcome = compare(p1_input,p2_input)
+
+        if outcome == "p1" :
+            score_p1 += 1 
             round += 1
             divider()
-            print(f"{p2_name} is the winner of this round")
+            print(f"{p1_name} is the winner of this round")
             input("continue")
             divider()
-    else :
-        divider()
-        print("Tie ")
-        input("continue")
-        divider()
+        elif outcome == "p2" :
+                score_p2 += 1
+                round += 1
+                divider()
+                print(f"{p2_name} is the winner of this round")
+                input("continue")
+                divider()
+        else :
+            divider()
+            print("Tie ")
+            input("continue")
+            divider()
             
-
-
-print("out")
+hud()
+rematch = input("wanna play again?\n y/n :") 
+if rematch.lower() == "y" :
+        reset()
+        print("REMATCH TEST")
+        print(rematch)
+else :
+    print(rematch)
+    print("No REMATCH")
+    volition = False
 
