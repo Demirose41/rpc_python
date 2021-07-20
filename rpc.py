@@ -120,12 +120,13 @@ volition = True
 live_score = {score_p1,score_p2}
 
 
-print("who will be first")
-p1_name = input()
-print("who will be second")
-p2_name = input()
-win_condition = math.ceil( int(input("Best of :")) / 2 )
 while volition == True :
+    divider()
+    print("who will be first")
+    p1_name = input()
+    print("who will be second")
+    p2_name = input()
+    win_condition = math.ceil( int(input("Best of :")) / 2 )
     while score_p2 < win_condition  and score_p1 < win_condition :
         hud()
         p1_input = prompt(p1_name)
@@ -154,14 +155,13 @@ while volition == True :
             input("continue")
             divider()
             
-hud()
-rematch = input("wanna play again?\n y/n :") 
-if rematch.lower() == "y" :
+    hud()
+    rematch = input("wanna play again?\n y/n :") 
+    if rematch.lower() == "y" :
         reset()
-        print("REMATCH TEST")
-        print(rematch)
-else :
-    print(rematch)
-    print("No REMATCH")
-    volition = False
+        divider()
+    else :
+        print(":¨·.·¨: \n `·. ƮϦαɳk Ψөu For Playing")
+        input()
+        volition = False
 
